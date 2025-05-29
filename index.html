@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Gestión de Equipos Tecnológicos</title>
+  <link rel="stylesheet" href="stylesi.css" />
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="container flex items-center justify-between">
+      <img src="logo.jpg" alt="Logo de la empresa" class="logo">
+    </div>
+    <div class="header-text text-center">
+      <h1 class="text-4xl font-extrabold text-indigo-600">Equipos de Cómputo</h1>
+    </div>
+    <div class="container flex items-center justify-between">
+      <img src="CyA.jpeg" alt="Logo de la empresa" class="logo">
+    </div>
+  </header>
+
+  <!-- Navbar -->
+  <nav class="bg-indigo-700 shadow-lg py-3">
+    <div class="container mx-auto flex justify-between items-center px-6 lg:px-16">
+      <ul class="flex space-x-8">
+        <li><a href="index.html" class="text-white text-lg font-medium hover:text-gray-200 transition duration-300">Inicio</a></li>
+        <li><a href="qr.html" class="text-white text-lg font-medium hover:text-gray-200 transition duration-300">Código QR</a></li>
+        <li><a href="ae.html" class="text-white text-lg font-medium hover:text-gray-200 transition duration-300">Agregar Nuevo Equipo</a></li>
+      </ul>
+      <a href="login.html" class="bg-red-600 px-4 py-2 rounded-md text-white font-semibold hover:bg-red-700 transition duration-300">
+        Cerrar Sesión
+      </a>
+    </div>
+  </nav>
+
+  <!-- Main -->
+  <main class="container mt-12">
+    <section class="flex flex-col items-center justify-center space-y-8">
+      <div class="search-box w-full max-w-lg bg-white p-6 rounded-lg shadow-lg text-center">
+        <h2 class="text-3xl font-bold text-indigo-600">Buscar Equipo</h2>
+        <p class="text-gray-600 mb-4">Ingrese el ID o número de serie del equipo</p>
+        <input type="text" id="searchInput" class="w-full p-3 border rounded-lg text-lg" placeholder="ID o número de serie" />
+        <button id="searchButton" class="mt-4 w-full bg-indigo-600 text-white py-3 rounded-lg text-lg font-semibold">Buscar</button>
+        <div id="warningMessage" class="mt-4 hidden text-lg text-red-600 font-semibold"></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p class="text-gray-300">© 2025 Caleras Bertran. Todos los derechos reservados.</p>
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    document.getElementById("searchButton").addEventListener("click", () => {
+      const query = document.getElementById("searchInput").value.trim().toLowerCase();
+      const warningMessage = document.getElementById("warningMessage");
+
+      warningMessage.classList.add("hidden");
+
+      if (!query) {
+        warningMessage.innerText = "Por favor, ingrese un ID o número de serie válido.";
+        warningMessage.classList.remove("hidden");
+        return;
+      }
+
+      // Redirige a la página editar-equipo.html con el parámetro
+      window.location.href = `editar-equipo.html?serie=${encodeURIComponent(query)}`;
+    });
+  </script>
+
+</body>
+</html>
+

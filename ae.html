@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Formulario de Resguardo</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f2f2f2;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #004080;
+      color: white;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    header img {
+      height: 50px;
+    }
+    header h1 {
+      flex: 1;
+      text-align: center;
+      font-size: 20px;
+      margin: 0;
+    }
+    footer {
+      background-color: #004080;
+      color: white;
+      text-align: center;
+      padding: 10px;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+    main {
+      padding: 40px 20px 80px 20px; /* espacio inferior para el footer */
+    }
+    form {
+      max-width: 800px;
+      margin: auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    h2 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 20px;
+    }
+    .form-control {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+    select.form-control[multiple],
+    select.form-control {
+      height: auto;
+      max-height: 150px;
+      overflow-y: auto;
+    }
+    button {
+      padding: 12px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      font-size: 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-right: 10px;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    hr {
+      border: 1px solid #ccc;
+      margin: 20px 0;
+    }
+    .section-title {
+      font-weight: bold;
+      font-size: 18px;
+      margin-bottom: 10px;
+      color: #004080;
+    }
+  </style>
+  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+<script>
+  (function(){
+    emailjs.init("service_ex4sgt9"); // Reemplaza con tu EmailJS user ID
+  })();
+</script>
+
+
+</head>
+<body>
+
+  <header>
+    <img src="logo.jpg" alt="Logo Izquierdo">
+    <h1>Vale de Resguardo de Equipo Tecnológico</h1>
+    <img src="CyA.jpeg" alt="Logo Derecho">
+  </header>
+
+  <nav class="bg-indigo-700 shadow-lg py-3">
+    <div class="container mx-auto flex justify-between items-center px-6 lg:px-16">
+      <ul class="flex space-x-8">
+        <li><a href="index.html" class="text-white text-lg font-medium hover:text-gray-200 transition duration-300">Inicio</a></li>
+        <li><a href="qr.html" class="text-white text-lg font-medium hover:text-gray-200 transition duration-300">Código QR</a></li>
+        <li><a href="ae.html" class="text-white text-lg font-medium hover:text-gray-200 transition duration-300">Agregar Nuevo Equipo</a></li>
+      </ul>
+      <a href="login.html" class="bg-red-600 px-4 py-2 rounded-md text-white font-semibold hover:bg-red-700 transition duration-300">
+        Cerrar Sesión
+      </a>
+    </div>
+  </nav>
+
+  <main>
+    <form id="resguardoForm">
+      <h2>Formulario de Vale de Resguardo</h2>
+
+      <input id="nombre" class="form-control" placeholder="Nombre del responsable" required>
+      <input id="fecha" type="date" class="form-control" required>
+
+      <select id="empresa" class="form-control" required>
+        <option value="" disabled selected>Selecciona la empresa</option>
+        <option value="CALERAS BERTRAN, S.A. DE C.V.">CALERAS BERTRAN, S.A. DE C.V.</option>
+        <option value="CALERAS BERNAL, S.A. DE C.V.">CALERAS BERNAL, S.A. DE C.V.</option>
+      </select>
+
+      <input id="puesto" class="form-control" placeholder="Puesto" required>
+      <input id="noEmpleado" class="form-control" placeholder="No. de Empleado" required>
+
+      <select id="departamento" class="form-control" required>
+        <option>ACTIVOS FIJOS</option>
+        <option>ALMACÉN</option>
+        <option>BERNAL</option>
+        <option>CALCINACIÓN</option>
+        <option>CANTERA</option>
+        <option>CASA 1</option>
+        <option>CASA 3</option>
+        <option>CASC</option>
+        <option>COMERCIALIZACIÓN</option>
+        <option>COMPRAS</option>
+        <option>CONSULTORIO</option>
+        <option>CXC</option>
+        <option>EJECUTIVOS</option>
+        <option>ENVASE</option>
+        <option>FINANZAS</option>
+        <option>GERENCIAS</option>
+        <option>HIDRATACIÓN</option>
+        <option>HONRO MEARZ</option>
+        <option>MANTENIMIENTO</option>
+        <option>AUTOMOTRIZ</option>
+        <option>ELÉCTRICO</option>
+        <option>MECÁNICO</option>
+        <option>OFICINAS GENERALES</option>
+        <option>SEGURIDAD</option>
+        <option>TEPEACA</option>
+        <option>TI</option>
+        <option>VENTAS</option>
+      </select>
+
+      <select id="direccion" class="form-control" required>
+        <option value="" disabled selected>Selecciona la dirección</option>
+        <option value="Tepeaca">Tepeaca</option>
+        <option value="Atotonilco">Atotonilco</option>
+        <option value="Tolimán">Tolimán</option>
+      </select>
+
+      <select id="equipo" class="form-control" required>
+        <option value="" disabled selected>Selecciona el equipo</option>
+        <option>Laptop</option>
+        <option>Impresora</option>
+        <option>Computadora</option>
+        <option>Celular</option>
+      </select>
+
+      <select id="tipo" class="form-control" placeholder="Tipo" required>
+        <option value="" disabled selected>Selecciona el Tipo</option>
+        <option>Activo Fijo</option>
+        <option>Arrendatario</option>
+       
+      </select>
+
+      <input id="marca" class="form-control" placeholder="Marca" required>
+      <input id="modelo" class="form-control" placeholder="Modelo" required>
+      <input id="noSerie" class="form-control" placeholder="No. de Serie" required>
+
+      <textarea id="caracteristicas" class="form-control" placeholder="Características" required></textarea>
+      <textarea id="accesorios" class="form-control" placeholder="Accesorios Adicionales"></textarea>
+
+      <!-- Campo Estatus -->
+     
+       <select id="estatus" class="form-control" required>
+        <option value="" disabled selected>Selecciona el equipo</option>
+        <option>ACTIVO</option>
+        <option>INACTIVO</option>
+      </select>
+
+      <hr>
+
+      <div class="section-title">Agendar Próximo Mantenimiento</div>
+
+      <input id="fechaMantenimiento" type="date" class="form-control" placeholder="Fecha de mantenimiento">
+      <input id="correoEmpresa" type="email" class="form-control" placeholder="Correo de la empresa para recordatorio">
+
+      <button type="button" onclick="guardarDatos()">Guardar Información</button>
+      <button type="button" onclick="imprimirVale()">Imprimir Vale (PDF)</button>
+      <button onclick="enviarCorreo()">Enviar correo de mantenimiento</button>
+
+    </form>
+  </main>
+
+  <footer>
+    © 2025 Caleras Bertran – Departamento de Tecnologías de la Información
+  </footer>
+
+  <script>
+    const MOCKAPI_URL = 'https://67f41119cbef97f40d2d4366.mockapi.io/datos'; // Cambia aquí con tu URL real de MockAPI
+
+    async function guardarDatos() {
+      const data = {
+        nombre: document.getElementById("nombre").value,
+        fecha: document.getElementById("fecha").value,
+        empresa: document.getElementById("empresa").value,
+        puesto: document.getElementById("puesto").value,
+        noEmpleado: document.getElementById("noEmpleado").value,
+        departamento: document.getElementById("departamento").value,
+        direccion: document.getElementById("direccion").value,
+        equipo: document.getElementById("equipo").value,
+        tipo: document.getElementById("tipo").value,
+        marca: document.getElementById("marca").value,
+        modelo: document.getElementById("modelo").value,
+        noSerie: document.getElementById("noSerie").value,
+        caracteristicas: document.getElementById("caracteristicas").value,
+        accesorios: document.getElementById("accesorios").value,
+        estatus: document.getElementById("estatus").value,
+        fechaMantenimiento: document.getElementById("fechaMantenimiento").value,
+        correoEmpresa: document.getElementById("correoEmpresa").value
+      };
+
+      try {
+        const response = await fetch(MOCKAPI_URL, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(data)
+        });
+
+        if (response.ok) {
+          alert('Datos guardados correctamente');
+          // Opcional: limpiar formulario
+          // document.getElementById('resguardoForm').reset();
+        } else {
+          alert('Error al guardar los datos');
+        }
+      } catch (error) {
+        alert('Error de conexión: ' + error.message);
+      }
+    }
+function imprimirVale() {
+   console.log("Imagen cargada correctamente"); // <- Debería verse en la consola
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF({
+    orientation: "portrait",
+    unit: "pt",
+    format: "letter" // 612 x 792 pt
+  });
+
+  const img = new Image();
+  img.src = "TIC-05 VALE DE RESGUARDO_page-0001.jpg"; // Cambia por el nombre correcto si subiste una nueva imagen
+
+  img.onload = function () {
+    doc.addImage(img, 'JPEG', 0, 0, 612, 792);
+
+    const data = {
+      nombre: document.getElementById("nombre").value,
+      fecha: document.getElementById("fecha").value,
+      empresa: document.getElementById("empresa").value,
+      puesto: document.getElementById("puesto").value,
+      noEmpleado: document.getElementById("noEmpleado").value,
+      departamento: document.getElementById("departamento").value,
+      direccion: document.getElementById("direccion").value,
+      equipo: document.getElementById("equipo").value,
+      tipo: document.getElementById("tipo").value,
+      marca: document.getElementById("marca").value,
+      modelo: document.getElementById("modelo").value,
+      noSerie: document.getElementById("noSerie").value,
+      caracteristicas: document.getElementById("caracteristicas").value,
+      accesorios: document.getElementById("accesorios").value,
+      nombre: document.getElementById("nombre").value
+    };
+
+    doc.setFontSize(10);
+    doc.setTextColor(0, 0, 0);
+
+    // DATOS CABECERA
+    doc.text(data.empresa, 200, 120);          // EMPRESA
+    doc.text(data.fecha, 500, 120);            // FECHA
+
+    // DATOS RESPONSABLE DE CUSTODIA
+    doc.text(data.nombre, 200, 165);          // NOMBRE
+    doc.text(data.puesto, 200, 175);          // PUESTO
+    doc.text(data.noEmpleado, 200, 185);      // No. EMPLEADO
+    doc.text(data.departamento, 200, 195);    // DEPARTAMENTO
+    doc.text(data.direccion, 200, 205);       // DIRECCION
+
+    // DESCRIPCIÓN DEL EQUIPO
+    doc.text(data.equipo, 200, 240);           // EQUIPO
+    doc.text(data.tipo, 400, 240);            // TIPO
+
+    doc.text(data.marca, 200, 250);            // MARCA
+    doc.text(data.modelo, 400, 250);          // MODELO
+
+    doc.text(data.noSerie, 200, 265);         // No. SERIE
+
+    // CARACTERISTICAS
+    const caract = doc.splitTextToSize(data.caracteristicas, 420);
+    doc.text(caract, 200, 275);                // CARACTERISTICAS
+
+    // ACCESORIOS
+    const acc = doc.splitTextToSize(data.accesorios, 420);
+    doc.text(acc, 200, 295);   
+    
+    // FIRMA
+      doc.text(data.nombre, 125, 692);          // NOMBRE
+
+    doc.save(`Vale_Resguardo_${data.nombre.replace(/\s/g, '_')}.pdf`);
+  };
+}
+
+
+function enviarCorreo() {
+  const data = {
+    nombre: document.getElementById("nombre").value,
+    fechaMantenimiento: document.getElementById("fechaMantenimiento").value,
+    correoEmpresa: document.getElementById("correoEmpresa").value,
+    equipo: document.getElementById("equipo").value,
+    modelo: document.getElementById("modelo").value,
+    noSerie: document.getElementById("noSerie").value
+  };
+
+  emailjs.send("service_ex4sgt9", "template_xxxx", {
+    nombre: data.nombre,
+    fechaMantenimiento: data.fechaMantenimiento,
+    correoEmpresa: data.correoEmpresa,
+    equipo: data.equipo,
+    modelo: data.modelo,
+    noSerie: data.noSerie
+  }).then(() => {
+    alert("📧 Correo enviado correctamente.");
+  }, (error) => {
+    console.error("Error al enviar el correo:", error);
+    alert("❌ Error al enviar el correo.");
+  });
+}
+
+
+
+
+  </script>
+</body>
+</html>

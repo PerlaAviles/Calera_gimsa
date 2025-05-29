@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Editar Equipo - Solo lectura hasta editar</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    footer {
+      background-color: #004080;
+      color: white;
+      text-align: center;
+      padding: 10px;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+    main {
+      padding: 40px 20px 80px 20px; /* espacio para footer */
+    }
+    form {
+      max-width: 900px;
+      margin: auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+
+<body class="bg-gray-50 text-gray-800">
+
+<header class="flex justify-between items-center p-4 bg-white shadow-md">
+  <img src="logo.jpg" alt="Logo Izquierdo" class="h-14" />
+  <h1 class="text-2xl font-bold text-center flex-grow -ml-14">Edición de Información del Equipo</h1>
+  <img src="CyA.jpeg" alt="Logo Derecho" class="h-14" />
+</header>
+  <!-- Navbar -->
+  <nav class="bg-indigo-700 shadow-lg py-3">
+    <div class="container mx-auto flex justify-between items-center px-6 lg:px-16">
+      <ul class="flex space-x-8">
+        <li><a href="index.html" class="text-white text-lg font-medium hover:text-gray-200 transition duration-300">Inicio</a></li>
+        <li><a href="qr.html" class="text-white text-lg font-medium hover:text-gray-200 transition duration-300">Código QR</a></li>
+        <li><a href="ae.html" class="text-white text-lg font-medium hover:text-gray-200 transition duration-300">Agregar Nuevo Equipo</a></li>
+      </ul>
+      <a href="login.html" class="bg-red-600 px-4 py-2 rounded-md text-white font-semibold hover:bg-red-700 transition duration-300">
+        Cerrar Sesión
+      </a>
+    </div>
+  </nav>
+<main>
+  <form id="editForm" class="space-y-4">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <!-- Campos -->
+      <div>
+        <label class="block font-semibold">ID:</label>
+        <input type="text" id="id" readonly class="w-full border rounded px-3 py-2" />
+      </div>
+      <div>
+        <label class="block font-semibold">No. de Serie:</label>
+        <input type="text" id="noSerie" class="w-full border rounded px-3 py-2" disabled />
+      </div>
+      <div>
+        <label class="block font-semibold">Modelo:</label>
+        <input type="text" id="modelo" class="w-full border rounded px-3 py-2" disabled />
+      </div>
+      <div>
+        <label class="block font-semibold">Fecha de Adquisición:</label>
+        <input type="date" id="fechaAdquisicion" class="w-full border rounded px-3 py-2" disabled />
+      </div>
+      <div>
+        <label class="block font-semibold">Tipo:</label>
+        <input type="text" id="tipo" class="w-full border rounded px-3 py-2" disabled />
+      </div>
+      <div>
+        <label class="block font-semibold">Marca:</label>
+        <input type="text" id="marca" class="w-full border rounded px-3 py-2" disabled />
+      </div>
+
+      <div>
+        <label class="block font-semibold">Nombre:</label>
+        <input type="text" id="nombre" class="w-full border rounded px-3 py-2" disabled />
+      </div>
+      <div>
+        <label class="block font-semibold">Fecha:</label>
+        <input type="date" id="fecha" class="w-full border rounded px-3 py-2" disabled />
+      </div>
+      <div>
+        <label class="block font-semibold">Empresa:</label>
+        <input type="text" id="empresa" class="w-full border rounded px-3 py-2" disabled />
+      </div>
+      <div>
+        <label class="block font-semibold">Puesto:</label>
+        <input type="text" id="puesto" class="w-full border rounded px-3 py-2" disabled />
+      </div>
+      <div>
+        <label class="block font-semibold">No. de Empleado:</label>
+        <input type="text" id="noEmpleado" class="w-full border rounded px-3 py-2" disabled />
+      </div>
+      <div>
+        <label class="block font-semibold">Departamento:</label>
+        <input type="text" id="departamento" class="w-full border rounded px-3 py-2" disabled />
+      </div>
+      <div>
+        <label class="block font-semibold">Dirección:</label>
+        <input type="text" id="direccion" class="w-full border rounded px-3 py-2" disabled />
+      </div>
+      <div>
+        <label class="block font-semibold">Equipo:</label>
+        <input type="text" id="equipo" class="w-full border rounded px-3 py-2" disabled />
+      </div>
+      <div>
+        <label class="block font-semibold">Accesorios:</label>
+        <input type="text" id="accesorios" class="w-full border rounded px-3 py-2" disabled />
+      </div>
+      <div>
+        <label class="block font-semibold">Estatus:</label>
+        <input type="text" id="estatus" class="w-full border rounded px-3 py-2" disabled />
+      </div>
+      <div>
+        <label class="block font-semibold">Fecha de Mantenimiento:</label>
+        <input type="date" id="fechaMantenimiento" class="w-full border rounded px-3 py-2" disabled />
+      </div>
+      <div>
+        <label class="block font-semibold">Correo Empresa:</label>
+        <input type="email" id="correoEmpresa" class="w-full border rounded px-3 py-2" disabled />
+      </div>
+    </div>
+
+    <div>
+      <label class="block font-semibold">Características:</label>
+      <textarea id="caracteristicas" class="w-full border rounded px-3 py-2" rows="3" disabled></textarea>
+    </div>
+
+    <div>
+      <h3 class="text-lg font-bold mt-6 mb-2">Historial de Mantenimiento</h3>
+      <div id="historialContainer" class="space-y-4"></div>
+    </div>
+
+    <div class="flex justify-between items-center mt-6">
+      <button type="button" id="editarBtn" class="bg-indigo-600 text-white font-semibold px-6 py-2 rounded hover:bg-indigo-700">Editar</button>
+      <p id="saveMessage" class="text-green-600 font-medium"></p>
+    </div>
+    <button id="mostrarHistorialBtn" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 ml-2">
+  Historial y Nueva Cita
+</button>
+
+  </form>
+</main>
+
+<footer>
+  © 2025 Caleras Bertran – Departamento de Tecnologías de la Información
+</footer>
+
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const serieBuscada = params.get('serie')?.toLowerCase();
+
+  if (!serieBuscada) {
+    document.body.innerHTML = "<h2 class='text-center mt-20 text-xl text-red-600'>No se proporcionó un número de serie.</h2>";
+    throw new Error("Falta número de serie");
+  }
+
+  // Referencias globales
+  const form = document.getElementById("editForm");
+  const editarBtn = document.getElementById("editarBtn");
+  const saveMessage = document.getElementById("saveMessage");
+  const historialContainer = document.getElementById("historialContainer");
+
+  let equipoId = null; // guardamos id para actualizar después
+
+  // Función para habilitar o deshabilitar campos
+  function setEditable(estado) {
+    // inputs y textarea excepto ID
+    const campos = form.querySelectorAll("input:not(#id), textarea");
+    campos.forEach(campo => campo.disabled = !estado);
+
+    // Historial inputs
+    historialContainer.querySelectorAll("input").forEach(inp => inp.disabled = !estado);
+  }
+
+  // Carga los datos y bloquea el formulario inicialmente
+  fetch("https://67f41119cbef97f40d2d4366.mockapi.io/datos")
+    .then(res => res.json())
+    .then(data => {
+      const equipo = data.find(e =>
+        e.id?.toLowerCase() === serieBuscada || e.noSerie?.toLowerCase() === serieBuscada
+      );
+
+      if (!equipo) {
+        document.body.innerHTML = "<h2 class='text-center mt-20 text-xl text-red-600'>Equipo no encontrado.</h2>";
+        return;
+      }
+
+      equipoId = equipo.id;
+
+      // Setear campos
+      document.getElementById("id").value = equipo.id || "";
+      document.getElementById("noSerie").value = equipo.noSerie || "";
+      document.getElementById("modelo").value = equipo.modelo || "";
+      document.getElementById("fechaAdquisicion").value = equipo.fechaAdquisicion || "";
+      document.getElementById("tipo").value = equipo.tipo || "";
+      document.getElementById("marca").value = equipo.marca || "";
+      document.getElementById("nombre").value = equipo.nombre || "";
+      document.getElementById("fecha").value = equipo.fecha || "";
+      document.getElementById("empresa").value = equipo.empresa || "";
+      document.getElementById("puesto").value = equipo.puesto || "";
+      document.getElementById("noEmpleado").value = equipo.noEmpleado || "";
+      document.getElementById("departamento").value = equipo.departamento || "";
+      document.getElementById("direccion").value = equipo.direccion || "";
+      document.getElementById("equipo").value = equipo.equipo || "";
+      document.getElementById("accesorios").value = equipo.accesorios || "";
+      
+      const estatusInput = document.getElementById("estatus");
+estatusInput.value = equipo.estatus || "";
+
+// Normaliza el valor para comparación
+const estatusNormalizado = (equipo.estatus || "").toLowerCase();
+
+// Limpia clases anteriores (si usas Tailwind u otras clases)
+estatusInput.classList.remove("text-green-600", "text-red-600", "font-bold");
+
+if (estatusNormalizado === "activo") {
+  estatusInput.classList.add("text-green-600", "font-bold");
+} else if (estatusNormalizado === "inactivo") {
+  estatusInput.classList.add("text-red-600", "font-bold");
+}
+
+      document.getElementById("fechaMantenimiento").value = equipo.fechaMantenimiento || "";
+      document.getElementById("correoEmpresa").value = equipo.correoEmpresa || "";
+      document.getElementById("caracteristicas").value = equipo.caracteristicas || "";
+
+      // Cargar historial
+      historialContainer.innerHTML = "";
+      (equipo.historial_mantenimiento || []).forEach(item => {
+        const div = document.createElement("div");
+        div.classList.add("grid", "grid-cols-1", "md:grid-cols-3", "gap-4", "border", "p-4", "rounded", "bg-gray-50");
+        div.innerHTML = `
+          <div>
+            <label class="font-semibold">Fecha:</label>
+            <input type="date" value="${item.fecha}" class="w-full border rounded px-3 py-2 historial-fecha" disabled />
+          </div>
+          <div>
+            <label class="font-semibold">Actividad:</label>
+            <input type="text" value="${item.actividad}" class="w-full border rounded px-3 py-2 historial-actividad" disabled />
+          </div>
+          <div>
+            <label class="font-semibold">Técnico:</label>
+            <input type="text" value="${item.tecnico}" class="w-full border rounded px-3 py-2 historial-tecnico" disabled />
+          </div>
+        `;
+        historialContainer.appendChild(div);
+      });
+
+      setEditable(false); // Bloquear al inicio
+    })
+    .catch(err => {
+      console.error("Error al cargar datos:", err);
+      document.body.innerHTML = "<h2 class='text-center mt-20 text-xl text-red-600'>Error al cargar los datos.</h2>";
+    });
+
+  // Variable que controla si estamos en modo edición
+  let modoEdicion = false;
+
+  editarBtn.addEventListener("click", () => {
+    if (!modoEdicion) {
+      // Cambiar a modo edición
+      modoEdicion = true;
+      editarBtn.textContent = "Guardar";
+      setEditable(true);
+      saveMessage.textContent = "";
+    } else {
+      // Guardar cambios
+      const body = {
+        noSerie: document.getElementById("noSerie").value,
+        modelo: document.getElementById("modelo").value,
+        fechaAdquisicion: document.getElementById("fechaAdquisicion").value,
+        tipo: document.getElementById("tipo").value,
+        marca: document.getElementById("marca").value,
+        nombre: document.getElementById("nombre").value,
+        fecha: document.getElementById("fecha").value,
+        empresa: document.getElementById("empresa").value,
+        puesto: document.getElementById("puesto").value,
+        noEmpleado: document.getElementById("noEmpleado").value,
+        departamento: document.getElementById("departamento").value,
+        direccion: document.getElementById("direccion").value,
+        equipo: document.getElementById("equipo").value,
+        accesorios: document.getElementById("accesorios").value,
+        estatus: document.getElementById("estatus").value,
+        fechaMantenimiento: document.getElementById("fechaMantenimiento").value,
+        correoEmpresa: document.getElementById("correoEmpresa").value,
+               caracteristicas: document.getElementById("caracteristicas").value,
+        historial_mantenimiento: Array.from(historialContainer.children).map(div => ({
+          fecha: div.querySelector(".historial-fecha").value,
+          actividad: div.querySelector(".historial-actividad").value,
+          
+          tecnico: div.querySelector(".historial-tecnico").value
+        }))
+      };
+
+      fetch(`https://67f41119cbef97f40d2d4366.mockapi.io/datos/${equipoId}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(body)
+      })
+      .then(res => {
+        if (!res.ok) throw new Error("Error al guardar");
+        return res.json();
+      })
+      .then(() => {
+        saveMessage.textContent = "Cambios guardados correctamente.";
+        editarBtn.textContent = "Editar";
+        modoEdicion = false;
+        setEditable(false);
+      })
+      .catch(err => {
+        console.error("Error al guardar:", err);
+        saveMessage.textContent = "Error al guardar los cambios.";
+      });
+    }
+  });
+  document.getElementById("mostrarHistorialBtn").addEventListener("click", function () {
+  const historialContainer = document.getElementById("historial");
+
+  // Mostrar historial si está oculto
+  if (historialContainer.classList.contains("hidden")) {
+    historialContainer.classList.remove("hidden");
+  }
+
+  // Agregar campos para nueva cita de mantenimiento
+  const nuevaCitaDiv = document.createElement("div");
+  nuevaCitaDiv.classList.add("mb-4", "p-4", "bg-gray-100", "rounded", "shadow");
+
+  nuevaCitaDiv.innerHTML = `
+    <h4 class="font-semibold mb-2">Nueva Cita de Mantenimiento</h4>
+    <label class="block mb-2">Fecha:
+      <input type="date" class="border p-1 w-full historial-fecha" required>
+    </label>
+    <label class="block mb-2">Actividad:
+      <input type="text" placeholder="Descripción de actividad" class="border p-1 w-full historial-actividad" required>
+    </label>
+    <label class="block mb-2">Técnico:
+      <input type="text" placeholder="Nombre del técnico" class="border p-1 w-full historial-tecnico" required>
+    </label>
+  `;
+
+  historialContainer.appendChild(nuevaCitaDiv);
+});
+
+</script>
+
