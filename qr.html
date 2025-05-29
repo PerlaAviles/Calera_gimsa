@@ -4,8 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Escáner de Código QR</title>
-  <script src="https://unpkg.com/html5-qrcode/minified/html5-qrcode.min.js"></script>
   <link rel="stylesheet" href="styles.css" />
+  <!-- Librería funcional de html5-qrcode -->
+  <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
 </head>
 <body class="bg-gray-50">
 
@@ -55,52 +56,51 @@
     </div>
   </footer>
 
+  <!-- Script QR -->
   <script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const html5QrCode = new Html5Qrcode("reader");
+    document.addEventListener("DOMContentLoaded", function () {
+      const html5QrCode = new Html5Qrcode("reader");
 
-    function onScanSuccess(decodedText, decodedResult) {
-      const resultDiv = document.getElementById("qrResult");
-      resultDiv.innerHTML = "Cargando información del equipo...";
+      function onScanSuccess(decodedText, decodedResult) {
+        const resultDiv = document.getElementById("qrResult");
+        resultDiv.innerHTML = "Cargando información del equipo...";
 
-      // Aquí la URL para el primer registro (ajusta el endpoint según tu MockAPI)
-      const apiURL = 'https://67f41119cbef97f40d2d4366.mockapi.io/equipos/1';
+        const apiURL = 'https://67f41119cbef97f40d2d4366.mockapi.io/equipos/1'; // Puedes cambiar esto por `decodedText` si el QR contiene el ID
 
-      fetch(apiURL)
-        .then(response => {
-          if (!response.ok) {
-            throw new Error("Equipo no encontrado en la base de datos.");
-          }
-          return response.json();
-        })
-        .then(data => {
-          resultDiv.innerHTML = `
-            <h3>Información del equipo</h3>
-            <p><strong>ID:</strong> ${data.id}</p>
-            <p><strong>Nombre:</strong> ${data.nombre || data.name}</p>
-            <p><strong>Descripción:</strong> ${data.descripcion || data.description || "Sin descripción"}</p>
-            <p><strong>Estado:</strong> ${data.estado || "Desconocido"}</p>
-          `;
-        })
-        .catch(error => {
-          resultDiv.innerText = `Error: ${error.message}`;
-        });
+        fetch(apiURL)
+          .then(response => {
+            if (!response.ok) throw new Error("Equipo no encontrado en la base de datos.");
+            return response.json();
+          })
+          .then(data => {
+            resultDiv.innerHTML = `
+              <h3>Información del equipo</h3>
+              <p><strong>ID:</strong> ${data.id}</p>
+              <p><strong>Nombre:</strong> ${data.nombre || data.name}</p>
+              <p><strong>Descripción:</strong> ${data.descripcion || data.description || "Sin descripción"}</p>
+              <p><strong>Estado:</strong> ${data.estado || "Desconocido"}</p>
+            `;
+          })
+          .catch(error => {
+            resultDiv.innerText = `Error: ${error.message}`;
+          });
 
-      html5QrCode.stop().catch(err => console.error("Error al detener el escáner:", err));
-    }
+        html5QrCode.stop().catch(err => console.error("Error al detener el escáner:", err));
+      }
 
-    function onScanError(errorMessage) {
-      // Silenciar errores de escaneo
-    }
+      function onScanError(errorMessage) {
+        // Ignora errores frecuentes de escaneo
+      }
 
-    html5QrCode.start(
-      { facingMode: "environment" },
-      { fps: 10, qrbox: 250 },
-      onScanSuccess,
-      onScanError
-    ).catch(err => console.error("Error al iniciar escáner: ", err));
-  });
-</script>
+      html5QrCode.start(
+        { facingMode: "environment" },
+        { fps: 10, qrbox: 250 },
+        onScanSuccess,
+        onScanError
+      ).catch(err => console.error("Error al iniciar escáner: ", err));
+    });
+  </script>
 
 </body>
 </html>
+
